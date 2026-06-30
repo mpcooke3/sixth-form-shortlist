@@ -115,7 +115,14 @@ function lateHtml(d){
 // sixth-form) nor an "audition" from the school name — those were over-claims.
 // State faith criteria come straight from official GIAS religious-character data.
 function entryHtml(d){ const p=[]; if(d.entryReq) p.push(d.entryReq); const f=normFaith(d.faith); if(f && d.sector==='State') p.push(f+' faith criteria'); return p.join('; '); }
-function linksHtml(d){ const p=[]; let site=d.website; if(site&&!/^https?:/.test(site)) site='https://'+site; if(site) p.push(a(site,'site')); if(d.aLevelUrl) p.push(a(d.aLevelUrl,'A-levels')); if(d.dramaUrl) p.push(a(d.dramaUrl,'Drama')); if(d.photographyUrl) p.push(a(d.photographyUrl,'Photo')); if(d.frenchUrl) p.push(a(d.frenchUrl,'French')); return p.length?'<span class="links">'+p.join(' · ')+'</span>':''; }
+// A subject link that actually points at a generic Art / visual-arts department
+// page is labelled honestly ("Art dept") rather than "Photo" — many schools run
+// A-level Photography inside the Art dept and have no dedicated Photography page,
+// so the link is a pointer, not proof. The subject's own A-level badge (from DfE
+// exam data) is what confirms it's really offered.
+function artish(u){ return /visual-arts|art-design|art-and-design|creative|/art|/art$|art/|-art|art-/i.test(u||'') && !/photo/i.test(u||''); }
+function photoLabel(u){ return artish(u) ? 'Art dept' : 'Photo'; }
+function linksHtml(d){ const p=[]; let site=d.website; if(site&&!/^https?:/.test(site)) site='https://'+site; if(site) p.push(a(site,'site')); if(d.aLevelUrl) p.push(a(d.aLevelUrl,'A-levels')); if(d.dramaUrl) p.push(a(d.dramaUrl,'Drama')); if(d.photographyUrl) p.push(a(d.photographyUrl,photoLabel(d.photographyUrl))); if(d.frenchUrl) p.push(a(d.frenchUrl,'French')); return p.length?'<span class="links">'+p.join(' · ')+'</span>':''; }
 function playsHtml(d){ if(d.productions!=='Yes') return d.productions==='No'?'No':''; return d.playsUrl?a(d.playsUrl,'Yes'):'Yes'; }
 function feesHtml(d){ if(!d.fees) return ''; return esc(gbp(d.fees))+(d.feesBoarding?' / '+esc(gbp(d.feesBoarding))+' board':''); }
 function markMeta(m){
