@@ -72,7 +72,7 @@
 <body>
 <header>
   <h1>Sixth-form shortlist — Drama · French · Photography</h1>
-  <div class="sub">Sixth-form options offering Drama, French and Photography, ranked for late / in-year entry. Travel times are to a weekday 08:30 arrival, from Queen's Park (NW6) and from Bethany School, Kent; † = national-router estimate. Late-entry likelihood is a rough heuristic (occupancy + admissions policy + advertised in-year places), not official. SEND = level of learning support. Subjects taken from school websites where official data under-reports; "(incl. BTEC/IB/AP)" = offered as an equivalent, not a straight A-level. Always verify details with the school.</div>
+  <div class="sub">Sixth-form options offering Drama, French and Photography, ranked for late / in-year entry. Travel times are to a weekday 08:30 arrival, from home (north-west London) and from Bethany School, Kent; † = national-router estimate. Late-entry likelihood is a rough heuristic (occupancy + admissions policy + advertised in-year places), not official. SEND = level of learning support. Subjects taken from school websites where official data under-reports; "(incl. BTEC/IB/AP)" = offered as an equivalent, not a straight A-level. Always verify details with the school.</div>
 </header>
 <div class="controls">
   <input type="search" id="q" placeholder="Search school, town, subject…">
@@ -115,8 +115,8 @@ function contactHtml(d){ const p=[]; if(d.email) p.push(a('mailto:'+d.email,d.em
 const COLS = [
   { h:'School', k:'name', sort:d=>d.name.toLowerCase(), cell:nameHtml },
   { h:'Late-entry', k:'late', sort:d=>-(d.score==null?-1:d.score), cell:lateHtml },
-  { h:'Public (QP)', k:'pub', sort:d=>d.pub==null?1e9:d.pub, cell:d=>esc(pub(d)) },
-  { h:'Car (QP)', k:'carQp', sort:d=>d.carQp==null?1e9:d.carQp, cell:d=>esc(fmtMin(d.carQp)) },
+  { h:'Public (home)', k:'pub', sort:d=>d.pub==null?1e9:d.pub, cell:d=>esc(pub(d)) },
+  { h:'Car (home)', k:'carQp', sort:d=>d.carQp==null?1e9:d.carQp, cell:d=>esc(fmtMin(d.carQp)) },
   { h:'Car (Bethany)', k:'carBeth', sort:d=>d.carBeth==null?1e9:d.carBeth, cell:d=>esc(fmtMin(d.carBeth)) },
   { h:'Fees', k:'fees', sort:d=>d.fees||'', cell:feesHtml },
   { h:'Faith', k:'faith', sort:d=>normFaith(d.faith), cell:d=>esc(normFaith(d.faith)) },
